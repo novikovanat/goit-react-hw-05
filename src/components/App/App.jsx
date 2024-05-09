@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Navigation from "../Navigation/Navigation";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return 
+  return (
+    <div>
+      <Navigation />
+    </div>
+  );
 }
 
-export default App
+export default App;

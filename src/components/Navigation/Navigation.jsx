@@ -1,10 +1,10 @@
 import { Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import MoviesPage from "../pages/MoviesPage";
-import MovieDetailsPage from "../pages/MovieDetailsPage";
-import MovieCast from "../pages/MovieCast";
-import MovieReviews from "../pages/MovieReviews";
-import NotFoundPage from "../pages/NotFoundPage";
+import HomePage from "../../pages/HomePage/HomePage";
+import MoviesPage from "../../pages/MoviesPage/MoviesPage";
+import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
+import MovieCast from "../MovieCast/MovieCast";
+import MovieReviews from "../MovieReviews/MovieReviews";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 export default function Navigation() {
   return (
@@ -12,7 +12,7 @@ export default function Navigation() {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>
-        <NavLink to={`${movieId}`}>{movieIdName}</NavLink>
+        <NavLink to={``}>{}</NavLink>
       </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
