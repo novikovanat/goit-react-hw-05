@@ -45,6 +45,6 @@ export default function HomePage() {
   // } finally {
   // setLoading(false);
   // }
-
+ 
   return <SearchBar onSubmit={setQuery} />;
 }

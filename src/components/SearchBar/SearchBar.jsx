@@ -2,15 +2,13 @@ import { useId } from "react";
 import * as Yup from "yup";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 
-function SearchBar() {
+function SearchBar({onSubmit}) {
   const homePageSearchId = useId();
   const validation = Yup.object({
     search: Yup.string().required("Required"),
   });
   function handleSubmit(values) {
-    console.log('====================================');
-    console.log(values);
-    console.log('====================================');
+      onSubmit(values)
   }
   return (
     <div>
