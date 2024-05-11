@@ -8,7 +8,7 @@ function SearchBar({onSubmit}) {
     search: Yup.string().required("Required"),
   });
   function handleSubmit(values) {
-      onSubmit(values)
+      onSubmit(values.search)
   }
   return (
     <div>

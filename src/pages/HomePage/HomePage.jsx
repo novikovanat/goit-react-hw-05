@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import fetchMovies from "../../fetchMovies";
@@ -55,6 +55,7 @@ export default function HomePage() {
     <div>
       <SearchBar onSubmit={setQuery} onSearch={search} />;
       {loading === true && <Loader />}
+      <Toaster/>
       <button onClick={search}>app</button>
     </div>
   );
