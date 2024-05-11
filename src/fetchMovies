@@ -1,15 +1,18 @@
 import axios from "axios";
-const MY_ACCESS_KEY = "f1b24869e5ba8fc28b0613709ac08a89";
 
 axios.defaults.baseURL = "https://api.themoviedb.org";
-axios.defaults.headers.common["Authorization"] = `${MY_ACCESS_KEY}`;
-axios.defaults.headers.common["Accept-Version"] = "v1";
-export default async function fetchMovies(searchTerm) {
+axios.defaults.headers.common["Authorization"] =
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMWIyNDg2OWU1YmE4ZmMyOGIwNjEzNzA5YWMwOGE4OSIsInN1YiI6IjY2M2E2MmQwYzkwNTRmMDEyYTkyMDkwNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mIGyNJVu51XS1CNgb-p1wrSS8D07J3xKRwtbNHhuSNI";
+export default async function fetchMovies(searchTerm, page) {
   const result = await axios.get("/3/search/movie", {
+    headers: {
+      accept: "application/json",
+    },
     params: {
       query: searchTerm,
+      page: page,
     },
   });
-  console.log(result)
+  console.log(result);
   return result.data;
 }

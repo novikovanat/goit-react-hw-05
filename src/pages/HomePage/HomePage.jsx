@@ -21,13 +21,13 @@ export default function HomePage() {
   //   search(query);
   // }, [query]);
 
-  // async function search (){
-  // try {
+  async function search (){
+  try {
   // setLoading(true);
   // setError("");
-  // const apiResponse = await fetchMovies(query) ;
-  // const { results } = apiResponse;
-  // console.log(results)
+  const apiResponse = await fetchMovies(query) ;
+  const { results } = apiResponse;
+  console.log(apiResponse)
   // if (results.length == 0) {
   //   toast(`We couldn't find anything like ${searchTerm}`);
   //   return;
@@ -37,14 +37,18 @@ export default function HomePage() {
   //     const { results: prevResults } = prevResponse;
   //     return { ...prevResponse, results: prevResults.concat(results) };
   //   });
-  // } else {
-  //   setResponse(photosArray);
+  } 
+  // else {
+  //   // setResponse(photosArray);
   // }
-  // } catch (error) {
+  catch (error) {
   // setError(error.message);
-  // } finally {
+  
+  } finally {
   // setLoading(false);
-  // }
- 
-  return <SearchBar onSubmit={setQuery} />;
+  
+  }
+}
+  return <SearchBar onSubmit={setQuery} onSearch={search} />;
+
 }
