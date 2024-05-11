@@ -7,9 +7,8 @@ export default function Navigation() {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>
-        <NavLink to={``}>{}</NavLink>
       </nav>
-      <RoutesComponent />
+      {/* <RoutesComponent /> */}
     </div>
   );
 }
