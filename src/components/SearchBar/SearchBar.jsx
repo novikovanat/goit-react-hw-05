@@ -1,50 +1,33 @@
-import React from "react";
+import { useId } from "react";
 import * as Yup from "yup";
-import { Form, Field, Formik, ErrorMessage, useFormik } from "formik";
+import { Form, Field, Formik, ErrorMessage } from "formik";
 
 function SearchBar() {
-  const formik = useFormik({
-    initialValues: { search: "" },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+  const homePageSearchId = useId();
+  const validation = Yup.object({
+    search: Yup.string().required("Required"),
   });
+  function handleSubmit(values) {
+    console.log('====================================');
+    console.log(values);
+    console.log('====================================');
+  }
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <input
-        name="search"
-        // type="text"
-        // id="search"
-        onChange={formik.handleChange}
-        value={formik.values.search}
-      />
-    </form>
+    <div>
+      <Formik
+        initialValues={{ search: "" }}
+        onSubmit={handleSubmit}
+        validationSchema={validation}
+      >
+        <Form>
+          <Field name="search" type="text" id={homePageSearchId} />
+          <ErrorMessage name="search" />
+          <button type="submit">Search</button>
+        </Form>
+      </Formik>
+    </div>
   );
 }
 
 export default SearchBar;
 
-// const validationSchema = Yup.object({ search: Yup.string().required });
-
-//   return (
-//     <div>
-//       <Formik
-//         onSubmit={(value) => console.log(value)}
-//         initialValues={{ search: "" }}
-//         validationSchema={validationSchema}
-//         validate={(values) => {
-//           const errors = {};
-//           if (!values.search) {
-//             errors.search = "Required";
-//             return errors;
-//           }
-//         }}
-//       >
-//         <Form onSubmit={(value) => console.log(value)}>
-//           <Field name="search" type="text" ></Field>
-//           <ErrorMessage name="search" />
-//           <button type="button">Search</button>
-//         </Form>
-//       </Formik>
-//     </div>
-//   );

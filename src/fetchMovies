@@ -1,0 +1,15 @@
+import axios from "axios";
+const MY_ACCESS_KEY = "f1b24869e5ba8fc28b0613709ac08a89";
+
+axios.defaults.baseURL = "https://api.themoviedb.org";
+axios.defaults.headers.common["Authorization"] = `${MY_ACCESS_KEY}`;
+axios.defaults.headers.common["Accept-Version"] = "v1";
+export default async function fetchMovies(searchTerm) {
+  const result = await axios.get("/3/search/movie", {
+    params: {
+      query: searchTerm,
+    },
+  });
+  console.log(result)
+  return result.data;
+}
