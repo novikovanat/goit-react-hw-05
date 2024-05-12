@@ -5,9 +5,11 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import fetchMovies from "../../fetchMovies";
 import Navigation from "../../components/Navigation/Navigation";
 import MovieList from "../../components/MovieList/MovieList";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
   const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [response, setResponse] = useState({
     page: null,
     total: 0,
@@ -55,9 +57,13 @@ export default function MoviesPage() {
   return (
     <div>
       <Navigation />
-      <SearchBar onSubmit={setQuery} />
+      <SearchBar
+        onSubmit={setQuery}
+        value={searchParams.get("query") ?? ''}
+        onFilter={setSearchParams}
+      />
       {loading === true && <Loader />}
-      <MovieList moviesArray={response.results}/>
+      <MovieList moviesArray={response.results} />
       <Toaster />
     </div>
   );
