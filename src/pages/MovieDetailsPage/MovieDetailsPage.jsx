@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import fetchMovieByID from "../../js/fetchMovieByID";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect,  useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 // import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
@@ -17,7 +17,8 @@ export default function MovieDetailsPage() {
       try {
         setLoading(true);
         setError("");
-        const apiResponse = await fetchMovieByID(movieId);
+        const apiResponse = 
+        await fetchMovieByID(movieId);
         setResponse(apiResponse);
         console.log(apiResponse);
       } catch (error) {
@@ -28,8 +29,7 @@ export default function MovieDetailsPage() {
     };
     getDetais(movieId);
   }, [movieId]);
-  // const imageURL = `https://image.tmdb.org/t/p/w500/${response.poster_path}`;
-  // console.log(response);
+ 
 
   return (
     <div>

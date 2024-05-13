@@ -3,7 +3,6 @@ import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import fetchMovies from "../../js/fetchMovies";
-import Navigation from "../../components/Navigation/Navigation";
 import MovieList from "../../components/MovieList/MovieList";
 import {useSearchParams } from "react-router-dom";
 // import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
@@ -32,7 +31,8 @@ export default function MoviesPage() {
     try {
       setLoading(true);
       setError("");
-      const apiResponse = await fetchMovies(query, page);
+      const apiResponse = 
+      await fetchMovies(query, page);
       const { results } = apiResponse;
       console.log(apiResponse);
       if (results.length == 0) {
