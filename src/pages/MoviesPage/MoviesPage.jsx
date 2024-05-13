@@ -59,8 +59,8 @@ export default function MoviesPage() {
       <Navigation />
       <SearchBar
         onSubmit={setQuery}
-        value={searchParams.get("query") ?? ''}
-        onFilter={setSearchParams}
+        value={searchParams}
+        onSearch={setSearchParams}
       />
       {loading === true && <Loader />}
       <MovieList moviesArray={response.results} />

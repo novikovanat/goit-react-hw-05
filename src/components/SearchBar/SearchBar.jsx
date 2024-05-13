@@ -2,20 +2,20 @@ import { useId } from "react";
 import * as Yup from "yup";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 
-function SearchBar({ onSubmit, value, onFilter }) {
+function SearchBar({ onSubmit, value, onSearch }) {
   const homePageSearchId = useId();
   const validation = Yup.object({
     search: Yup.string().required("Required"),
   });
   function handleSubmit(values) {
-    onFilter({ query: values.search });
+    value.set("query", values.search)
+    onSearch(value);
     onSubmit(values.search )
-    console.log(value);
   }
   return (
     <div>
       <Formik
-        initialValues={{ search: value }}
+        initialValues={{ search: value.get('query') ?? ''}}
         onSubmit={handleSubmit}
         validationSchema={validation}
       >
