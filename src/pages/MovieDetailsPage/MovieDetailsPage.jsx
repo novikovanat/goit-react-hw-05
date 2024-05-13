@@ -2,6 +2,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import fetchMovieByID from "../../js/fetchMovieByID";
 import { useEffect, useMemo, useState } from "react";
 import Loader from "../../components/Loader/Loader";
+import MovieDetails from "../../components/MovieDetails/MovieDetails";
 // import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 
 export default function MovieDetailsPage() {
@@ -18,6 +19,7 @@ export default function MovieDetailsPage() {
         setError("");
         const apiResponse = await fetchMovieByID(movieId);
         setResponse(apiResponse);
+        console.log(apiResponse);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -29,16 +31,12 @@ export default function MovieDetailsPage() {
   // const imageURL = `https://image.tmdb.org/t/p/w500/${response.poster_path}`;
   // console.log(response);
 
-  console.log("==================response==================");
-  console.log(response);
-  console.log("====================================");
-
   return (
     <div>
       <Link to={location.state}>Go Back</Link>
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
-      {/* <h2><img src={`https://image.tmdb.org/t/p/w500/${apiResponse.poster_path}`}></img></h2> */}
+      {response !== null && <MovieDetails  details={response}/>}
     </div>
   );
 }
