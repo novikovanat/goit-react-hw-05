@@ -33,7 +33,6 @@ export default function MoviesPage() {
       setError("");
       const apiResponse = await fetchMovies(query, page);
       const { results } = apiResponse;
-      console.log(apiResponse);
       if (results.length == 0) {
         toast(`We couldn't find anything like ${query}`);
         return;

@@ -9,7 +9,6 @@ export default function MovieDetails({
 }) {
   let countryName;
   const imageURL = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-  console.log(imageURL);
   if (production_countries.length > 0) {
     const [{ name }] = production_countries;
     countryName = name;
