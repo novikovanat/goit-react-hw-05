@@ -7,7 +7,12 @@ const MovieDetails = lazy(() => import("../../components/MovieList/MovieList"));
 export default function MovieDetailsPage() {
   const location = useLocation();
   const { movieId } = useParams();
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState({
+    page: null,
+    results: [],
+    total_pages: 0,
+    total_results: 0,
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -34,8 +39,8 @@ export default function MovieDetailsPage() {
       <Link to={BackLinkUrl.current ?? "/movies"}>Go Back</Link>
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
-      {response !== null && <MovieDetails details={response} />}
       <ul>
+        {0<response.total_results && <MovieDetails details={response} />}
         <li>
           <Link to="cast">Cast</Link>
         </li>
