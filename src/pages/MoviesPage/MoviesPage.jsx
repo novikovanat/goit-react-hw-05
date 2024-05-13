@@ -6,9 +6,9 @@ import fetchMovies from "../../fetchMovies";
 import Navigation from "../../components/Navigation/Navigation";
 import MovieList from "../../components/MovieList/MovieList";
 import { useParams, useSearchParams } from "react-router-dom";
+import { ErrorMessage } from "formik";
 
 export default function MoviesPage() {
-  const [query, setQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [response, setResponse] = useState({
     page: null,
@@ -18,16 +18,15 @@ export default function MoviesPage() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [page, setPage] = useState(1);
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [currentImage, setCurrentImage] = useState(null);
 
   useEffect(() => {
+    let query = searchParams.get("query") ?? "";
+    let page = searchParams.get("page") ?? 1;
     if (query === "") {
       return;
     }
     search(query, page);
-  }, [page, query]);
+  }, [searchParams]);
 
   const search = async (query, page) => {
     try {
@@ -54,15 +53,13 @@ export default function MoviesPage() {
       setLoading(false);
     }
   };
+  console.log();
   return (
     <div>
       <Navigation />
-      <SearchBar
-        onSubmit={setQuery}
-        value={searchParams}
-        onSearch={setSearchParams}
-      />
+      <SearchBar value={searchParams} onSearch={setSearchParams} />
       {loading === true && <Loader />}
+      {error !== "" && <ErrorMessage errorText={error} />}
       <MovieList moviesArray={response.results} />
       <Toaster />
     </div>
