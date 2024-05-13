@@ -4,7 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import fetchMovies from "../../js/fetchMovies";
 import MovieList from "../../components/MovieList/MovieList";
-import {useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 
 export default function MoviesPage() {
@@ -31,8 +31,7 @@ export default function MoviesPage() {
     try {
       setLoading(true);
       setError("");
-      const apiResponse = 
-      await fetchMovies(query, page);
+      const apiResponse = await fetchMovies(query, page);
       const { results } = apiResponse;
       console.log(apiResponse);
       if (results.length == 0) {
@@ -53,13 +52,15 @@ export default function MoviesPage() {
       setLoading(false);
     }
   };
- 
+
   return (
     <div>
       <SearchBar value={searchParams} onSearch={setSearchParams} />
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
-      <MovieList moviesArray={response.results} />
+      {0 < response.total_results && (
+        <MovieList moviesArray={response.results} />
+      )}
       <Toaster />
     </div>
   );
