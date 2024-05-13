@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import fetchMovies from "../../fetchMovies";
+import fetchMovies from "../../js/fetchMovies";
 import Navigation from "../../components/Navigation/Navigation";
 import MovieList from "../../components/MovieList/MovieList";
-import { useParams, useSearchParams } from "react-router-dom";
-import { ErrorMessage } from "formik";
+import {useSearchParams } from "react-router-dom";
+// import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 
 export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,13 +53,13 @@ export default function MoviesPage() {
       setLoading(false);
     }
   };
-  console.log();
+ 
   return (
     <div>
       <Navigation />
       <SearchBar value={searchParams} onSearch={setSearchParams} />
       {loading === true && <Loader />}
-      {error !== "" && <ErrorMessage errorText={error} />}
+      {/* {error !== "" && <ErrorMessage errorText={error} />} */}
       <MovieList moviesArray={response.results} />
       <Toaster />
     </div>

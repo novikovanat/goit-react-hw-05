@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import fetchMovies from "../../fetchMovies";
+// import fetchMovies from "../../js/fetchMovies";
 import Navigation from "../../components/Navigation/Navigation";
 
 export default function HomePage() {
