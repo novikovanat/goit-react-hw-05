@@ -1,9 +1,8 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import fetchMovieByID from "../../js/fetchMovieByID";
-import { Suspense, useEffect, useState } from "react";
-import Loader from "../../components/Loader/Loader";
-import MovieDetails from "../../components/MovieDetails/MovieDetails";
-// import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
+const fetchMovieByID = lazy(() => import("../../js/fetchMovieByID"));
+const Loader = lazy(() => import("../../components/Loader/Loader"));
+const MovieDetails = lazy(() => import("../../components/MovieList/MovieList"));
 
 export default function MovieDetailsPage() {
   const location = useLocation();
@@ -11,6 +10,8 @@ export default function MovieDetailsPage() {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const BackLinkUrl = useRef(location.state);
 
   useEffect(() => {
     const getDetais = async () => {
@@ -30,7 +31,7 @@ export default function MovieDetailsPage() {
 
   return (
     <div>
-      <Link to={location.state}>Go Back</Link>
+      <Link to={BackLinkUrl.current ?? "/movies"}>Go Back</Link>
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
       {response !== null && <MovieDetails details={response} />}
