@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import fetchAdditionalInfo from "../../js/fetchAdditionalInfo";
 import Loader from "../Loader/Loader";
-import { string } from "yup";
+import Cast from "../Cast/Cast";
 export default function MovieCast() {
   const { movieId } = useParams();
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState({ id: null, cast: [], crew: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -16,7 +16,6 @@ export default function MovieCast() {
         setError("");
         const apiResponse = await fetchAdditionalInfo(movieId, "credits");
         setResponse(apiResponse);
-        console.log(apiResponse);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -31,6 +30,7 @@ export default function MovieCast() {
       <h2>MovieCast</h2>
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
+      <Cast cast={response.cast} />
     </div>
   );
 }

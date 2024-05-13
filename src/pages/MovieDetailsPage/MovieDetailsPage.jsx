@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import fetchMovieByID from "../../js/fetchMovieByID";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 // import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
@@ -42,7 +42,9 @@ export default function MovieDetailsPage() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet/>
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

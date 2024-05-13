@@ -6,12 +6,12 @@ const RoutesComponent = lazy(() => import("../Routes/RoutesComponent"));
 
 function App() {
   return (
- <div>
-     <Suspense fallback={"wait.... for it"}>
-       <Navigation />
-       <RoutesComponent />
-     </Suspense>
- </div>
+    <div>
+      <Suspense fallback={"wait.... for it"}>
+        <Navigation />
+        <RoutesComponent />
+      </Suspense>
+    </div>
   );
 }
 

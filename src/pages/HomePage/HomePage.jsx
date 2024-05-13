@@ -33,8 +33,9 @@ export default function HomePage() {
   return (
     <div>
       {loading === true && <Loader />}
-      {0 < response.total_results && 
-        <MovieList moviesArray={response.results} />}
+      {0 < response.total_results && (
+        <MovieList moviesArray={response.results} />
+      )}
     </div>
   );
 }
