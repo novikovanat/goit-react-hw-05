@@ -56,7 +56,6 @@ export default function MoviesPage() {
  
   return (
     <div>
-      <Navigation />
       <SearchBar value={searchParams} onSearch={setSearchParams} />
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}

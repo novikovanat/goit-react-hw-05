@@ -1,14 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import Navigation from "../Navigation/Navigation";
-import RoutesComponent from "../Routes/RoutesComponent";
+import { Suspense, lazy } from "react";
 
+const Navigation = lazy(() => import("../Navigation/Navigation"));
+const RoutesComponent = lazy(() => import("../Routes/RoutesComponent"));
+const css = lazy("./App.css");
 
 function App() {
   return (
-    <div>
-      <RoutesComponent/>
-    </div>
+    <Suspense fallback={"wait.... for it"}>
+      <Navigation />
+      <RoutesComponent />
+    </Suspense>
   );
 }
 

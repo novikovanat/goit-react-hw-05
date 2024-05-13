@@ -59,7 +59,6 @@ export default function HomePage() {
       <Toaster />
       <button onClick={search}>Home page</button> */}
       <h2>HomePage</h2>
-      <Navigation/>
     </div>
   );
 }
