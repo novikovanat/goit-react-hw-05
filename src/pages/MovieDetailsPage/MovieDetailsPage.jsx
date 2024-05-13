@@ -48,7 +48,7 @@ export default function MovieDetailsPage() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Suspense>
+      <Suspense fallback='loading'>
         <Outlet />
       </Suspense>
     </div>
