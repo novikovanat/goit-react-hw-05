@@ -1,23 +1,21 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
-const fetchMovieByID = lazy(() => import("../../js/fetchMovieByID"));
-const Loader = lazy(() => import("../../components/Loader/Loader"));
-const MovieDetails = lazy(() => import("../../components/MovieList/MovieList"));
+import { Suspense, useEffect, useRef, useState } from "react";
+// const fetchMovieByID = lazy(() => import("../../js/fetchMovieByID"));
+// const Loader = lazy(() => import("../../components/Loader/Loader"));
+// const MovieDetails = lazy(() => import("../../components/MovieList/MovieList"));
+import fetchMovieByID from "../../js/fetchMovieByID.js";
+import Loader from "../../components/Loader/Loader";
+import MovieDetails from "../../components/MovieDetails/MovieDetails.jsx";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
 export default function MovieDetailsPage() {
   const location = useLocation();
   const { movieId } = useParams();
-  const [response, setResponse] = useState({
-    page: null,
-    results: [],
-    total_pages: 0,
-    total_results: 0,
-  });
+  const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const BackLinkUrl = useRef(location.state);
-
   useEffect(() => {
     const getDetais = async () => {
       try {
@@ -25,13 +23,16 @@ export default function MovieDetailsPage() {
         setError("");
         const apiResponse = await fetchMovieByID(movieId);
         setResponse(apiResponse);
+        console.log("==============apiResponse======================");
+        console.log(apiResponse);
+        console.log("====================================");
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-    getDetais(movieId);
+    getDetais();
   }, [movieId]);
 
   return (
@@ -39,8 +40,8 @@ export default function MovieDetailsPage() {
       <Link to={BackLinkUrl.current ?? "/movies"}>Go Back</Link>
       {loading === true && <Loader />}
       {/* {error !== "" && <ErrorMessage errorText={error} />} */}
+      {response !== null && <MovieDetails details={response} />}
       <ul>
-        {0<response.total_results && <MovieDetails details={response} />}
         <li>
           <Link to="cast">Cast</Link>
         </li>
@@ -48,7 +49,7 @@ export default function MovieDetailsPage() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Suspense fallback='loading'>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </div>

@@ -1,16 +1,16 @@
 import { Suspense, lazy } from "react";
 
-const Navigation = lazy(() => import("../Navigation/Navigation"));
-const RoutesComponent = lazy(() => import("../Routes/RoutesComponent"));
+// const Navigation = lazy(() => import("../Navigation/Navigation"));
+// const RoutesComponent = lazy(() => import("../Routes/RoutesComponent"));
+import Navigation from "../Navigation/Navigation";
+import RoutesComponent from "../Routes/RoutesComponent";
 // const css = lazy("./App.css");
 
 function App() {
   return (
     <div>
-      <Suspense fallback={"wait.... for it"}>
-        <Navigation />
-        <RoutesComponent />
-      </Suspense>
+      <Navigation />
+      <RoutesComponent />
     </div>
   );
 }

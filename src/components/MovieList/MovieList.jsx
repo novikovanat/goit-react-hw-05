@@ -1,8 +1,8 @@
+
 import { Link, useLocation } from "react-router-dom";
 
-
 export default function MovieList({ moviesArray }) {
- const location = useLocation()
+  const location = useLocation();
   const movieList = moviesArray.map(({ title, id }) => {
     return (
       <li key={id}>
