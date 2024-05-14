@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Loader from "../../components/Loader/Loader";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import fetchTrendingMovies from "../../js/fetchTrendingMovies";
 import MovieList from "../../components/MovieList/MovieList";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage"
 
 export default function HomePage() {
   const [response, setResponse] = useState({
@@ -33,6 +33,7 @@ export default function HomePage() {
   return (
     <div>
       {loading === true && <Loader />}
+      {error !== "" && <ErrorMessage errorText={error} />}
       {0 < response.total_results && (
         <MovieList moviesArray={response.results} />
       )}

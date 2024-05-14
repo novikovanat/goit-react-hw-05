@@ -3,6 +3,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import fetchMovieByID from "../../js/fetchMovieByID.js";
 import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails.jsx";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
 export default function MovieDetailsPage() {
   const location = useLocation();
@@ -32,7 +33,7 @@ export default function MovieDetailsPage() {
     <div>
       <Link to={BackLinkUrl.current ?? "/movies"}>Go Back</Link>
       {loading === true && <Loader />}
-      {/* {error !== "" && <ErrorMessage errorText={error} />} */}
+      {error !== "" && <ErrorMessage errorText={error} />}
       {response !== null && <MovieDetails details={response} />}
       <ul>
         <li>

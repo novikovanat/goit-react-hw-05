@@ -10,7 +10,7 @@ const MovieReviews = lazy(() => import("../MovieReviews/MovieReviews"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
-// import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage"
+
 
 export default function RoutesComponent() {
   return (
