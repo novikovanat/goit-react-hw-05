@@ -7,6 +7,9 @@ export default function Reviews({ reviews }) {
       </li>
     );
   });
+  if (reviews.length < 1) {
+    return <p>no reviews</p>;
+  }
 
   return <ul>{reviewsList}</ul>;
 }

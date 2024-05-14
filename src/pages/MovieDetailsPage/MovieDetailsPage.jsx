@@ -1,12 +1,8 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { Suspense, useEffect, useRef, useState } from "react";
-// const fetchMovieByID = lazy(() => import("../../js/fetchMovieByID"));
-// const Loader = lazy(() => import("../../components/Loader/Loader"));
-// const MovieDetails = lazy(() => import("../../components/MovieList/MovieList"));
 import fetchMovieByID from "../../js/fetchMovieByID.js";
 import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails.jsx";
-// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
 export default function MovieDetailsPage() {
   const location = useLocation();
@@ -23,9 +19,6 @@ export default function MovieDetailsPage() {
         setError("");
         const apiResponse = await fetchMovieByID(movieId);
         setResponse(apiResponse);
-        console.log("==============apiResponse======================");
-        console.log(apiResponse);
-        console.log("====================================");
       } catch (error) {
         setError(error.message);
       } finally {
