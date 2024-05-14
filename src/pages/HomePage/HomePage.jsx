@@ -22,7 +22,6 @@ export default function HomePage() {
       setLoading(true);
       setError("");
       const apiResponse = await fetchTrendingMovies();
-      console.log(apiResponse);
       setResponse(apiResponse);
     } catch (error) {
       setError(error.message);

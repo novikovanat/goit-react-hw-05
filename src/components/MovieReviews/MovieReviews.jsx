@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import fetchAdditionalInfo from "../../js/fetchAdditionalInfo";
 import Loader from "../Loader/Loader";
 import Reviews from "../Reviews/Reviews";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage"
 export default function MovieReviews() {
   const { movieId } = useParams();
   const [response, setResponse] = useState({
@@ -34,7 +35,7 @@ export default function MovieReviews() {
   return (
     <div>
       {loading === true && <Loader />}
-      {/* {error !== "" && <ErrorMessage errorText={error} />} */}
+      {error !== "" && <ErrorMessage errorText={error} />}
       <Reviews reviews={response.results} />
     </div>
   );
